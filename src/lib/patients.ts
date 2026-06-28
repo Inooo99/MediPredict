@@ -18,7 +18,7 @@ export type Patient = {
 
 export async function findPatient(id: string): Promise<Patient | null> {
   try {
-    const res = await fetch(`http://127.0.0.1:5000/patient/${id}`);
+    const res = await fetch(`/api/patient/${id}`);
     if (!res.ok) return null;
     const data = await res.json();
     return data;

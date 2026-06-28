@@ -6,13 +6,16 @@ import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
+import os
+
+base_dir = os.path.dirname(__file__)
 
 # 1. Load ketiga model yang dikirim dari Colab
-model_dt = joblib.load('model_dt.pkl')
-model_rf = joblib.load('model_rf.pkl')
-model_xgb = joblib.load('model_xgb.pkl')
+model_dt = joblib.load(os.path.join(base_dir, 'model_dt.pkl'))
+model_rf = joblib.load(os.path.join(base_dir, 'model_rf.pkl'))
+model_xgb = joblib.load(os.path.join(base_dir, 'model_xgb.pkl'))
 
-df = pd.read_csv('diabetes.csv')
+df = pd.read_csv(os.path.join(base_dir, 'diabetes.csv'))
 
 @app.route('/predict', methods=['POST'])
 def predict():
